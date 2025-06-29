@@ -1,0 +1,319 @@
+String:
+-------
+
+In Java, a String is the type of object that can store a sequence of characters enclosed by double quotes, and every
+character is stored in 16 bits, i.e., using UTF 16-bit encoding. A string acts the same as an array of characters.
+
+Java provides a robust and flexible API for handling strings, allowing for various operations such as concatenation,
+comparison, and manipulation.
+
+Syntax:
+<String_Type> <string_variable> = "<sequence_of_string>";
+
+Example:
+String name = "Geeks";
+String num = "1234"
+
+Ways of Creating a Java String - There are two ways to create a string in Java:
+
+1.String Literal
+2.Using new Keyword
+
+1. String literal (Static Memory)
+-----------------------------------
+
+To make Java more memory efficient (because no new objects are created if it exists already in the string constant pool).
+
+Example:
+String demoString = “GeeksforGeeks”;
+
+2. Using new keyword (Heap Memory)
+----------------------------------
+String s = new String("Welcome");
+In such a case, JVM will create a new string object in normal (non-pool) heap memory and the literal "Welcome" will be
+placed in the string constant pool. The variable s will refer to the object in the heap (non-pool).
+
+In the given example only one object will be created. Firstly JVM will not find any string object with the value "Welcome"
+in the string constant pool, so it will create a new object. After that it will find the string with the value "Welcome"
+in the pool, it will not create a new object but will return the reference to the same instance.
+
+Example:
+String demoString = new String (“GeeksforGeeks”);
+
+Interfaces and Classes in Strings in Java
+-----------------------------------------
+CharBuffer: This class implements the CharSequence interface. This class is used to allow character buffers to be used in
+place of CharSequences. An example of such usage is the regular-expression package java.util.regex.
+
+String: It is a sequence of characters. In Java, objects of String are immutable which means a constant and cannot be
+changed once created.
+
+CharSequence Interface
+-----------------------
+CharSequence Interface is used for representing the sequence of Characters in Java. Classes that are implemented using
+the CharSequence interface are mentioned below and these provides much of functionality like substring, lastoccurence,
+first occurrence, concatenate , toupper, tolower etc.
+
+1. String
+2. StringBuffer
+3. StringBuilder
+
+1. String
+----------
+String is an immutable class which means a constant and cannot be changed once created and if wish to change , we need
+to create an new object and even the functionality it provides like toupper, tolower, etc all these return a new object,
+its not modify the original object. It is automatically thread safe.
+
+Syntax:
+// Method 1
+String str= "geeks";
+
+// Method 2
+String str= new String("geeks")
+
+2. StringBuffer
+-----------------
+StringBuffer is a peer class of String, it is mutable in nature and it is thread safe class , we can use it when we have
+multi threaded environment and shared object of string buffer i.e, used by multiple thread. As it is thread safe so there
+is extra overhead, so it is mainly used for multithreaded program.
+
+Syntax:
+StringBuffer demoString = new StringBuffer("GeeksforGeeks");
+
+3. StringBuilder
+--------------------
+StringBuilder in Java represents an alternative to String and StringBuffer Class, as it creates a mutable sequence of
+characters and it is not thread safe. It is used only within the thread , so there is no extra overhead , so it is mainly
+used for single threaded program.
+
+Syntax:
+StringBuilder demoString = new StringBuilder(); demoString.append("GFG");
+
+
+Immutable String in Java
+-------------------------
+In Java, string objects are immutable. Immutable simply means unmodifiable or unchangeable.
+Once a string object is created its data or state can't be changed but a new string object is created.
+
+Memory Allotment of Java String
+--------------------------------
+
+String literal
+---------------
+Whenever a String Object is created as a literal, the object will be created in the String constant pool. This allows JVM
+to optimize the initialization of String literal. The string constant pool is present in the heap.
+
+Example 1: Using String literals to assigning char sequence value.
+String str1 = "Hello";
+
+Example 2: When we initialize the same char sequence using string literals.
+String str1 = "Hello";
+String str2 = "Hello";
+
+
+Using new Keyword
+------------------
+The string can also be declared using a new operator i.e. dynamically allocated. In case of String are dynamically allocated
+they are assigned a new memory location in the heap . This string will not be added to the String constant pool.
+
+Example 1: Using new keyword to assign a char sequence to a String object.
+String str1 = new String("John"); String str2 = new String("Deo");
+
+If we want to store this string in the constant pool then we will need to “intern” it using .intern() method.
+
+Example 2: Using .intern() to add a string object in string constant pool.
+ // this will add the string to string constant pool.
+String internedString = demoString.intern();
+
+It is preferred to use String literals as it allows JVM to optimize memory allocation.
+
+If we notice if we use new keyword or string literals both store the values in the string but the difference is if we use
+the string literals or intern() the string object it will store the values in the string constant pool which is present
+inside the heap as shown in the image.
+
+Note->  String Object is created in Heap area and Literals are stored in special memory area known as string constant pool.
+
+
+
+Basic Information Methods
+----------------------------
+
+| Method              | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| `int length()`      | Returns the number of characters in the string                              |
+| `boolean isEmpty()` | Returns true if the string is empty (`length() == 0`)                       |
+| `boolean isBlank()` | Returns true if the string is empty or contains only white space (Java 11+) |
+
+
+🔍 Character Access
+----------------------------
+
+| Method                                             | Description                                  |
+| -------------------------------------------------- | -------------------------------------------- |
+| `char charAt(int index)`                           | Returns the character at the specified index |
+| `int codePointAt(int index)`                       | Returns the Unicode code point at the index  |
+| `int codePointBefore(int index)`                   | Unicode code point before index              |
+| `int codePointCount(int beginIndex, int endIndex)` | Counts Unicode code points in a range        |
+
+
+🔄 String Comparison
+----------------------------
+
+| Method                                          | Description                              |
+| ----------------------------------------------- | ---------------------------------------- |
+| `boolean equals(Object another)`                | Compares strings by content              |
+| `boolean equalsIgnoreCase(String another)`      | Compares strings ignoring case           |
+| `int compareTo(String another)`                 | Lexicographical comparison               |
+| `int compareToIgnoreCase(String another)`       | Lexicographical comparison ignoring case |
+| `boolean startsWith(String prefix)`             | Checks if string starts with prefix      |
+| `boolean startsWith(String prefix, int offset)` | Checks prefix starting from index        |
+| `boolean endsWith(String suffix)`               | Checks if string ends with suffix        |
+| `boolean matches(String regex)`                 | Returns true if string matches regex     |
+
+
+🔍 Searching
+----------------------------
+
+| Method                                   | Description                          |
+| ---------------------------------------- | ------------------------------------ |
+| `boolean contains(CharSequence s)`       | Checks if string contains a sequence |
+| `int indexOf(int ch)`                    | Index of first occurrence of char    |
+| `int indexOf(int ch, int fromIndex)`     | From a specific index                |
+| `int indexOf(String str)`                | Index of substring                   |
+| `int indexOf(String str, int fromIndex)` | From a specific index                |
+| `int lastIndexOf(int ch)`                | Last occurrence of char              |
+| `int lastIndexOf(String str)`            | Last occurrence of substring         |
+
+
+✂️ Substring and Slicing
+----------------------------
+
+| Method                                           | Description                                   |
+| ------------------------------------------------ | --------------------------------------------- |
+| `String substring(int beginIndex)`               | From index to end                             |
+| `String substring(int beginIndex, int endIndex)` | Substring from begin to end index (exclusive) |
+
+
+🔧 Modification
+----------------------------
+
+| Method                                                  | Description                              |
+| ------------------------------------------------------- | ---------------------------------------- |
+| `String concat(String str)`                             | Concatenates strings                     |
+| `String replace(char oldChar, char newChar)`            | Replaces characters                      |
+| `String replace(CharSequence old, CharSequence new)`    | Replaces substrings                      |
+| `String replaceAll(String regex, String replacement)`   | Replaces all matches using regex         |
+| `String replaceFirst(String regex, String replacement)` | Replaces first match using regex         |
+| `String trim()`                                         | Removes leading and trailing white space |
+| `String strip()`                                        | Unicode-aware trim (Java 11+)            |
+| `String stripLeading()`                                 | Removes leading whitespace (Java 11+)    |
+| `String stripTrailing()`                                | Removes trailing whitespace (Java 11+)   |
+| `String repeat(int count)`                              | Repeats the string (Java 11+)            |
+
+
+🔄 Case Conversion
+----------------------------
+
+| Method                              | Description                            |
+| ----------------------------------- | -------------------------------------- |
+| `String toLowerCase()`              | Converts to lowercase (default locale) |
+| `String toLowerCase(Locale locale)` | Locale-specific lowercase              |
+| `String toUpperCase()`              | Converts to uppercase (default locale) |
+| `String toUpperCase(Locale locale)` | Locale-specific uppercase              |
+
+
+🧹 Whitespace Handling (Java 11+)
+----------------------------
+
+| Method                   | Description                     |
+| ------------------------ | ------------------------------- |
+| `boolean isBlank()`      | Checks if string is blank       |
+| `String strip()`         | Removes all kinds of whitespace |
+| `String stripLeading()`  | Removes leading whitespace      |
+| `String stripTrailing()` | Removes trailing whitespace     |
+
+
+🪓 Splitting and Joining
+----------------------------
+
+| Method                                                                                  | Description                      |
+| --------------------------------------------------------------------------------------- | -------------------------------- |
+| `String[] split(String regex)`                                                          | Splits string by regex           |
+| `String[] split(String regex, int limit)`                                               | With a limit on number of splits |
+| `static String join(CharSequence delimiter, CharSequence... elements)`                  | Joins elements with delimiter    |
+| `static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)` | Joins from a collection          |
+
+
+🪞 Other Utility Methods
+----------------------------
+
+| Method                                         | Description                                               |
+| ---------------------------------------------- | --------------------------------------------------------- |
+| `String intern()`                              | Adds to string pool if not already there                  |
+| `char[] toCharArray()`                         | Converts to character array                               |
+| `String format(String format, Object... args)` | Formats using format specifiers                           |
+| `static String valueOf(...)`                   | Converts other types (boolean, int, char, etc.) to string |
+
+
+🆕 Java 12+ and Beyond
+----------------------------
+
+| Method                                    | Description                                       |
+| ----------------------------------------- | ------------------------------------------------- |
+| `String indent(int n)`                    | Adjusts indentation (Java 12+)                    |
+| `String transform(Function<String, R> f)` | Transforms the string using a lambda (Java 12+)   |
+| `String describeConstable()`              | Returns optional describing the string (Java 12+) |
+
+
+StringBuilder Methods in Java
+-----------------------------
+
+1. append(String str)               - Appends the string to the builder.
+2. append(char c)                  - Appends a character.
+3. append(int i)                   - Appends an integer.
+4. append(Object obj)              - Appends the string representation of an object.
+5. insert(int offset, String str)  - Inserts string at the specified position.
+6. insert(int offset, char c)      - Inserts a character at the specified position.
+7. delete(int start, int end)      - Deletes characters from start to end-1.
+8. deleteCharAt(int index)         - Deletes the character at the specified index.
+9. replace(int start, int end, String str) - Replaces characters from start to end-1 with given string.
+10. reverse()                      - Reverses the characters.
+11. setCharAt(int index, char ch)  - Sets the character at the given index.
+12. setLength(int newLength)       - Sets the length of the character sequence.
+13. substring(int start)           - Returns substring from the start index.
+14. substring(int start, int end)  - Returns substring between start and end.
+15. length()                       - Returns the length.
+16. capacity()                     - Returns the current capacity.
+17. ensureCapacity(int minimumCapacity) - Ensures the capacity is at least the specified minimum.
+18. trimToSize()                   - Trims the capacity to match the current size.
+19. charAt(int index)              - Returns the character at the given index.
+20. indexOf(String str)            - Returns the index of the first occurrence.
+21. lastIndexOf(String str)        - Returns the index of the last occurrence.
+22. toString()                     - Converts the builder to a String.
+
+
+StringBuffer Methods in Java
+----------------------------
+
+1. append(String str)               - Appends the string to this buffer.
+2. append(char c)                  - Appends a character.
+3. append(int i)                   - Appends an integer.
+4. append(Object obj)              - Appends the string representation of an object.
+5. insert(int offset, String str)  - Inserts the string at the specified offset.
+6. insert(int offset, char c)      - Inserts the character at the specified offset.
+7. delete(int start, int end)      - Removes characters from start to end-1.
+8. deleteCharAt(int index)         - Removes the character at the specified index.
+9. replace(int start, int end, String str) - Replaces a substring with the specified string.
+10. reverse()                      - Reverses the characters in the buffer.
+11. setCharAt(int index, char ch)  - Sets the character at the specified index.
+12. setLength(int newLength)       - Sets the length of the character sequence.
+13. substring(int start)           - Returns a new string from the start index.
+14. substring(int start, int end)  - Returns a new string between the specified indices.
+15. length()                       - Returns the length of the character sequence.
+16. capacity()                     - Returns the current capacity.
+17. ensureCapacity(int minimumCapacity) - Ensures the capacity is at least the minimum specified.
+18. trimToSize()                   - Trims the capacity to match the current length.
+19. charAt(int index)              - Returns the character at the specified index.
+20. indexOf(String str)            - Returns the index of the first occurrence of the specified string.
+21. lastIndexOf(String str)        - Returns the index of the last occurrence of the specified string.
+22. toString()                     - Returns a string representing the data in this buffer.

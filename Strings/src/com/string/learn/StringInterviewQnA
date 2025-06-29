@@ -1,0 +1,70 @@
+
+Java String, StringBuilder, and StringBuffer Interview Questions & Answers
+---------------------------------------------------------------------------
+
+1. Q: What is the difference between String, StringBuilder, and StringBuffer?
+   A:
+   - String is immutable.
+   - StringBuilder is mutable and not thread-safe.
+   - StringBuffer is mutable and thread-safe (synchronized).
+
+2. Q: Why is String immutable in Java?
+   A: To improve security, caching, synchronization, and class loading performance. It allows safe sharing across multiple threads.
+
+3. Q: What is the advantage of using StringBuilder over String?
+   A: StringBuilder avoids creating multiple objects during concatenation, improving memory and performance.
+
+4. Q: When should you use StringBuffer instead of StringBuilder?
+   A: Use StringBuffer when multiple threads are accessing the same object, as it is synchronized and thread-safe.
+
+5. Q: How does the String Pool work?
+   A: Java maintains a pool of strings in memory to avoid creating duplicate string literals.
+
+6. Q: What does the intern() method do in a String?
+   A: It adds the string to the pool or returns the existing pooled reference.
+
+7. Q: What is the output of the following?
+      String s1 = "Java";
+      String s2 = new String("Java");
+      System.out.println(s1 == s2);
+   A: false (because s1 is from the pool, s2 is a new object in heap)
+
+8. Q: Is String thread-safe?
+   A: Yes, because it's immutable.
+
+9. Q: How to reverse a string in Java?
+   A: Use StringBuilder or StringBuffer:
+      new StringBuilder("abc").reverse().toString();
+
+10. Q: How can you make a mutable string in Java?
+    A: Use StringBuilder or StringBuffer.
+
+11. Q: What are some common methods of String class?
+    A: length(), charAt(), substring(), indexOf(), lastIndexOf(), equals(), equalsIgnoreCase(), toLowerCase(), toUpperCase(), replace(), trim(), split(), concat().
+
+12. Q: Can you change the length of a StringBuilder?
+    A: Yes, using setLength().
+
+13. Q: What happens if you exceed the capacity of a StringBuilder?
+    A: It increases capacity automatically based on (oldCapacity * 2) + 2.
+
+14. Q: How to convert a StringBuilder to String?
+    A: Use toString() method.
+
+15. Q: Is StringBuilder thread-safe?
+    A: No, use StringBuffer if thread safety is required.
+
+16. Q: Which is faster - StringBuilder or StringBuffer?
+    A: StringBuilder is faster because it is not synchronized.
+
+17. Q: Can StringBuilder be used in multi-threaded programs?
+    A: No, it's not safe. Use StringBuffer instead.
+
+18. Q: How to create a StringBuilder with specific capacity?
+    A: new StringBuilder(int capacity);
+
+19. Q: What is the initial capacity of StringBuilder?
+    A: Default is 16 characters.
+
+20. Q: Which one to use in loops for concatenation?
+    A: StringBuilder (for better performance).

@@ -1,4 +1,4 @@
-package com.string.qna.basic;
+package com.string.qna;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
